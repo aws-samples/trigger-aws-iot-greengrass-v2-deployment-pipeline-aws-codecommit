@@ -10,7 +10,3 @@ def test_sqs_queue_created():
     stack = Ggv2CdkGdkPythonStack(app, "ggv2-cdk-gdk-python")
     template = assertions.Template.from_stack(stack)
 
-
-#     template.has_resource_properties("AWS::SQS::Queue", {
-#         "VisibilityTimeout": 300
-#     })

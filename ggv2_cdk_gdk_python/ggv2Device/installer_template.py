@@ -19,6 +19,3 @@ sudo -E java -Droot="/greengrass/v2" -Dlog.store=FILE \
   --setup-system-service true
 
 '''
-
-#GreengrassCoreTokenExchangeRoleAlias 
-#GreengrassCoreTokenExchangeRole

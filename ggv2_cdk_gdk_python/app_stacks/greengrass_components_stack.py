@@ -27,15 +27,7 @@ class GreengrassComponentsStack(cdk.Stack):
         )
 
         self.add_component_gitops(repo)
-        #for role in roles:
-        #    role.assume_role_policy.add_statements(
-        #        iam.PolicyStatement(
-        #            effect=iam.Effect.ALLOW,
-        #            principals=[iam.ArnPrincipal(arn=role.role_arn)],
-        #            actions=["sts:AssumeRole"],
-        #        )
-        #    )
-        #
+
 
     def add_component_gitops(self, repository):
 
@@ -148,15 +140,6 @@ class GreengrassComponentsStack(cdk.Stack):
                 )
             )
 
-            #role_list.append(ggv2_component_build_project.role)
-            #temp_role_name_arn = ggv2_component_build_project.role.role_arn
-            #ggv2_component_build_project.role.assume_role_policy.add_statements(
-            #    iam.PolicyStatement(
-            #        effect=iam.Effect.ALLOW,
-            #        principals=[iam.ArnPrincipal(arn="arn:*:iam::{}:role/*".format(self.node.try_get_context("account")))],
-            #        actions=["sts:AssumeRole"],
-            #    )
-            #)
     
 
 

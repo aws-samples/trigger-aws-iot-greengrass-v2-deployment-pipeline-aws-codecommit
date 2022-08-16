@@ -118,16 +118,7 @@ class GGv2Device(cdk.Stack):
         user_data_script = script.format(**var_replace)
         user_data = ec2.UserData.for_linux(shebang="#!/bin/bash")
         user_data.add_commands("echo test")
-        #user_data.add_commands('until git clone https://github.com/aws-quickstart/quickstart-linux-utilities.git; do echo "Retrying"; done',
-        #    "cd /quickstart-linux-utilities",
-        #    "source quickstart-cfn-tools.source",
-        #    "qs_update-os || qs_err",
-        #    "qs_bootstrap_pip || qs_err",
-        #    "qs_aws-cfn-bootstrap || qs_err",
-        #    "mkdir -p /opt/aws/bin",
-        #    "ln -s /usr/local/bin/cfn-* /opt/aws/bin/"
-        #    )
-       
+
         linux_machine_image = ec2.MachineImage.latest_amazon_linux(cached_in_context=False,user_data=user_data,generation=ec2.AmazonLinuxGeneration.AMAZON_LINUX_2)
         vpc = ec2.Vpc.from_lookup(self,"Vpc",is_default=True)
         security_group = ec2.SecurityGroup(self,"GGSecurityGroup",vpc=vpc,allow_all_outbound=True)

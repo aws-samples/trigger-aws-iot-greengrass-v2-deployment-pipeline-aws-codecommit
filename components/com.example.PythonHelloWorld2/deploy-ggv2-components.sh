@@ -63,11 +63,9 @@ _prepare_deployment_config_file_based_on_deployment_name()
   AWS_REGION=$4
   COMP_VERSION=""
   
-  # If using a THING_GROUP, uncomment the below line, and comment out the line after it. 
   THING_GROUP_ARN="arn:aws:iot:${AWS_REGION}:${AWS_ACCOUNT_NUMBER}:thinggroup/${DEV_IOT_THING_GROUP}"
   deployment_id=`aws greengrassv2 list-deployments --region ${AWS_REGION} --target-arn ${THING_GROUP_ARN} | jq -r '.deployments[]' | jq -r .deploymentId`
-  #THING_ARN="arn:aws:iot:${AWS_REGION}:${AWS_ACCOUNT_NUMBER}:thing/${DEV_IOT_THING}"
-  #deployment_id=`aws greengrassv2 list-deployments --target-arn ${THING_ARN} | jq -r '.deployments[]' | jq -r .deploymentId`
+
   echo "Deployment Id is : ${deployment_id}"
 
   ### Check if the component was created previously and used in other thing groups.
@@ -78,7 +76,7 @@ _prepare_deployment_config_file_based_on_deployment_name()
 
   if [ -z "${deployment_id}" ] || [  "${deployment_id}" = "null" ]; then # checks if the deployment ID exists for the DEV_IOT_THING_GROUP by checking if deployment_id is an empty string yes
     echo "There is no deployment for this thinggroup : ${DEV_IOT_THING_GROUP} yet."
-    #echo "There is no deployment for this thing : ${DEV_IOT_THING} yet."
+
     STR1='{"'
     STR2=${COMP_NAME}
     STR3='": {"componentVersion": '
@@ -88,7 +86,7 @@ _prepare_deployment_config_file_based_on_deployment_name()
     echo ${NEW_CONFIG_JSON}
     NEXT_VERSION=${CURRENT_VERSION_NUMBER}
   else # if deployemnt ID exists already
-    #_getNextVersion ${CURRENT_VERSION_NUMBER} 2
+
     NEW_CONFIG_JSON=`aws greengrassv2 get-deployment --region ${AWS_REGION} --deployment-id ${deployment_id} | jq .'components' | jq 'del(."$COMP_NAME")' | jq  '. += {"'"$COMP_NAME"'": {"componentVersion": "'"$CURRENT_VERSION_NUMBER"'","configurationUpdate":{"reset":[""]}}}'` # compose a NEW_CONFIG_JSON, following the GDK CLI file format, using the NEXT_VERSION returned from _getNextVersion 2 lines above 
   fi
   FINAL_CONFIG_JSON='{"components":'$NEW_CONFIG_JSON'}'
@@ -106,7 +104,6 @@ _deploy_configuration_on_devices()
   THING_GROUP_ARN="arn:aws:iot:${AWS_REGION}:${AWS_ACCOUNT_NUMBER}:thinggroup/${DEV_IOT_THING_GROUP}"
   #THING_ARN="arn:aws:iot:${AWS_REGION}:${AWS_ACCOUNT_NUM}:thing/${DEV_IOT_THING}"
   RES=`${AWS} greengrassv2 create-deployment --target-arn ${THING_GROUP_ARN} --deployment-name test --cli-input-json ${CONFIG_URI} --region ${AWS_REGION} --deployment-policies failureHandlingPolicy=DO_NOTHING`
-  #RES=`${AWS} greengrassv2 create-deployment --target-arn ${THING_ARN} --cli-input-json ${CONFIG_URI} --region ${AWS_REGION} --deployment-policies failureHandlingPolicy=DO_NOTHING`
   echo ${RES}
 }
 

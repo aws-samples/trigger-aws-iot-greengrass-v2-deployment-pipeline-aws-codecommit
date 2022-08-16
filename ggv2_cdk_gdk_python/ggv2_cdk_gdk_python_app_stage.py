@@ -18,8 +18,8 @@ class Ggv2CdkGdkPythonAppStage(cdk.Stage):
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
-        greengrassComponentsStack = GreengrassComponentsStack(
+        self.greengrassComponentsStack = GreengrassComponentsStack(
             self, "GreengrassComponentsStack"
         )
 
-        monitoringStack = MonitoringStack(self, "MonitoringStack")
+        self.monitoringStack = MonitoringStack(self, "MonitoringStack")

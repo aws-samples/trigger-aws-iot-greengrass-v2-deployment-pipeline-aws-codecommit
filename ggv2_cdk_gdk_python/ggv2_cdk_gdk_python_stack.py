@@ -71,17 +71,7 @@ class Ggv2CdkGdkPythonStack(Stack):
                 ]
             ),
         )
-        #pipeline.add_to_role_policy(
-        #    iam.PolicyStatement(
-        #        effect=iam.Effect.ALLOW,
-        #        resources=["*"],
-        #        actions=[
-        #            "ec2:*",
-        #            "greengrass:*",
-        #            "iot:*"
-        #        ],
-        #    )
-        #)
+
 
         # Check if we have to create a new ggv2 installer
         create_core_device_flag = str(params.get("createCoreDevice")).lower()

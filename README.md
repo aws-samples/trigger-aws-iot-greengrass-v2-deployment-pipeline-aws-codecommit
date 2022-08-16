@@ -1,4 +1,5 @@
-# Automate AWS IoT Greengrass Component Deployments from CodeCommit
+# Trigger AWS IoT Greengrass component deployments from AWS CodeCommit
+This code repository is part of the blogpost [Link](https://aws-blogs-prod.amazon.com/iot/?p=9339&preview=true)
 
 ## Architecture
 ![architecture](docs/GGv2CDKGDKEC2.jpeg)
@@ -48,7 +49,7 @@ In order to set up the CDK pipeline in your account, you have to run the followi
 
 First, bootstrap your account/region for CDK - replace the appropriate variables (i.e. ACCOUNT-ID, REGION, ADMIN-PROFILE) before executing.
 > NOTE: the argument --profile is optional
-> NOTE: if you get an error statinmg you cannot import aws_cdk in app.py, you may meed to run this command: python3 -m pip install -r requirements.txt
+> NOTE: if you get an error stating you cannot import aws_cdk in app.py, you may meed to run this command: python3 -m pip install -r requirements.txt
 ```
 export CDK_NEW_BOOTSTRAP=1 
 npx cdk bootstrap --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess \
