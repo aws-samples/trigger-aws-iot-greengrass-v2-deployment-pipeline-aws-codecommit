@@ -23,7 +23,7 @@ This code repository is part of the blogpost [Link](https://aws-blogs-prod.amazo
 git clone codecommit::us-east-2://ggv2-cdk-blog-test
 cd ggv2-cdk-blog
 ```
-* In order to deploy the cdk you will need to copy the cdk contents from github[gitlab (https://gitlab.aws.dev/joysl/ggv2-blog-cdk)] repository 
+* In order to deploy the cdk you will need to copy the cdk contents from this repository. 
 * To easily copy the contents of this github project to your new project, copy export.zip to your CodeCommit project directory,and unzip
 Sample command
 ```
