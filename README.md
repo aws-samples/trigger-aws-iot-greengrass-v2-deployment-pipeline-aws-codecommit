@@ -1,5 +1,5 @@
 # Trigger AWS IoT Greengrass component deployments from AWS CodeCommit
-This code repository is part of the blogpost [Link](https://aws-blogs-prod.amazon.com/iot/?p=9339&preview=true)
+This code repository is part of the blogpost [Link](https://aws.amazon.com/blogs/iot/trigger-aws-iot-greengrass-component-deployments-from-aws-codecommit/)
 
 ## Architecture
 ![architecture](docs/GGv2CDKGDKEC2.jpeg)
